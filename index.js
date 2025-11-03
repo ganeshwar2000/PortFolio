@@ -1,23 +1,4 @@
-// const text = "Frontend Developer";
-// const text2="UI/UX Developer" ;
-// const text3="Graphics Designer" ;
-// let index = 0;
 
-// function typeEffect() {
-//   document.getElementById("typing").textContent = text.slice(0, index);
-//   document.getElementById("typing").textContent = text2.slice(0, index);
-//   index++;
-//   if (index <= text.length) {
-//     setTimeout(typeEffect, 120);
-//   } else {
-//     setTimeout(() => {
-//       index = 0;
-//       typeEffect();
-//     }, 2000);
-//   }
-// }
-
-// window.onload = typeEffect;
 
 const texts = ["Frontend Developer", "UI/UX Developer", "Graphics Designer"];
 let textIndex = 0;
@@ -57,12 +38,7 @@ window.addEventListener("load", () => {
     });
   });
 
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  // alert("Thank you for contacting me! I'll get back to you soon.");
-  this.reset();
-});
+  
 
 
 // Optional: make the cards glow dynamically when hovered
@@ -91,3 +67,12 @@ downloadBtn.addEventListener("click", () => {
   link.download = "Ganeshwar_Patra_CV.pdf";
   link.click();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.getElementById("burger");
+  const navbar = document.getElementById("navbar");
+  burger.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+});
+

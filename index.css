@@ -19,14 +19,17 @@ body {
 
 /* Header/Navbar */
 header {
-  display: flex;
+   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 10%;
-  background: transparent;
+  padding: 20px 10%;
   position: fixed;
   width: 100%;
-  z-index: 100;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
 }
 
 .logo {
@@ -56,6 +59,8 @@ header {
   justify-content: space-between;
   padding: 0 10%;
   background: radial-gradient(circle at right, rgba(255,0,0,0.2), black 70%);
+  position: relative;
+  z-index: 0;
 }
 
 .home-content {
@@ -148,6 +153,13 @@ header {
   object-fit: cover;
 }
 
+.burger {
+  display: none; /* hidden on desktop */
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .home {
@@ -164,8 +176,35 @@ header {
     padding: 20px 5%;
   }
 
+  .navbar {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    text-align: right;
+    display: none; /* Hidden by default */
+  }
+
+  .navbar.active {
+    display: flex; /* Shown when toggled */
+  }
+
+  .burger {
+    display: block;
+  }
+
   .navbar a {
-    margin-left: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .navbar a:hover {
+    color: #ff4040;
   }
 
 
@@ -177,56 +216,171 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at right, rgba(255,0,0,0.2), black 70%);
+  background: radial-gradient(circle at right, rgba(255, 0, 0, 0.2), black 70%);
+  position: relative;
+  z-index: 1;
+  margin-top: 100px; /* Adjust space between sections */
 }
 
 .about-container {
   display: flex;
   gap: 50px;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-
-/* Left Image - simplified */
+/* Left Image */
 .about-img {
   flex: 1;
-  border-radius: 10px; /* slight rounded corners */
-  overflow: hidden;    /* keeps image contained within rounded corners */
-  box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0.6); /* red shadow */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0.6);
 }
 
 .about-img img {
   width: 100%;
   height: auto;
-  border-radius: 10px; /* match container rounding */
-  object-fit: cover;   /* ensures image fills container nicely */
-  filter: none;        /* remove grayscale */
-  mix-blend-mode: normal; /* remove blend effect */
-  display: block;      /* remove unwanted inline spacing */
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+   display: block;
+ 
+position: relative;
+  z-index: 1;
 }
 
 /* Right Content */
 .about-content {
   flex: 1.2;
+  color: white;
 }
 
 .about-title {
   color: #ff4040;
-  font-weight: bolder;
+  font-weight: 700;
   margin-bottom: 8px;
-  font-size: larger;
+  font-size: 1.2rem;
 }
 
 .about-heading {
-    font-size: 2.3rem;
-    color: #fff;
-    margin-bottom: 20px;
+  font-size: 2.3rem;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .about-text {
   color: #aaa;
   margin-bottom: 40px;
+  line-height: 1.7;
 }
+
+/* Skills Grid */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.skill-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 64, 64, 0.4);
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.skill-box img {
+  width: 24px;
+  height: 24px;
+}
+
+.skill-box:hover {
+  background: rgba(255, 64, 64, 0.2);
+  transform: translateY(-3px);
+}
+
+.download-btn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #ff4040;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #ff2020;
+  transform: scale(1.05);
+}
+
+/* -------------------- */
+/* RESPONSIVE DESIGN 🔥 */
+/* -------------------- */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .about-section {
+    padding: 60px 5%;
+  }
+
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .about-img,
+  .about-content {
+    flex: unset;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .skills {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .about-section {
+    padding: 50px 20px;
+  }
+
+  .about-heading {
+    font-size: 1.8rem;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+  }
+
+  .skills {
+    gap: 10px;
+  }
+
+  .skill-box {
+    flex: 1 1 45%;
+    justify-content: center;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+}
+
 
 /* Skills Box */
 .skills {
@@ -530,3 +684,47 @@ textarea {
 }
 
 /* first */
+
+
+/* --- Fix section gap and cutting issue --- */
+@media (max-width: 900px) {
+  /* Prevent header overlap on mobile */
+  .home {
+    padding-top: 140px !important; /* push content below fixed header */
+    height: auto !important;       /* allow flexible height */
+    min-height: 100vh;
+  }
+
+  /* Reduce image size to avoid overflow */
+  .home-img img {
+    width: 380px !important;
+    height: 380px !important;
+  }
+
+  /* Fix about section gap */
+  .about-section {
+    margin-top: 0 !important; /* remove large gap */
+    padding-top: 40px !important;
+  }
+
+  /* Reduce section spacing globally */
+  section {
+    scroll-margin-top: 90px; /* smooth scroll offset */
+  }
+}
+
+/* Optional: small devices (phones under 500px) */
+@media (max-width: 500px) {
+  .home-content h1 {
+    font-size: 32px !important;
+  }
+  .typing-text {
+    font-size: 20px !important;
+  }
+  .home-content p {
+    font-size: 14px !important;
+  }
+  header {
+    padding: 15px 5%;
+  }
+}
